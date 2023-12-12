@@ -1,0 +1,9 @@
+<div class="flex flex-col">
+  {% for category in categories %}
+    <!-- Filter Option 1 -->
+    <a href="{% url "item:items" %}?q={{ q }}&category={{ category.id }}" class="mb-2 p-2 text-left transition-transform duration-200 ease-in-out transform hover:scale-105 focus:outline-none cursor-pointer {% if category.id == category_id %} bg-gray-200 {% endif %}">
+        {{ category.name }}
+    </a>
+  {% endfor %}
+  <a href="{% url "item:items" %}" class="p-2 bg-bg-transparent border border-gray-500 text-gray-500 rounded-md mt-2 lg:mt-0 lg:col-span-1 ml-2 lg:w-1/4 text-center">Clear Filters</a>
+</div>

@@ -1,0 +1,10 @@
+<form action="{% url "item:items" %}" method="get" class="mb-4">
+  <div class="lg:mb-0 lg:mr-2">
+    <label for="search" class="block text-sm font-medium text-gray-600">Search:</label>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
+      <input type="text" id="search" name="q" value="{{ q }}" class="mt-1 p-2 border rounded-md w-full lg:w-auto focus:outline-none focus:ring focus:border-indigo-300 lg:col-span-2">
+      <input type="hidden" name="category" value="{{ category_id }}">
+      <button type="submit" class="p-2 bg-indigo-500 text-white rounded-md mt-2 lg:mt-0 lg:col-span-1">Search</button>
+    </div>
+  </div>
+</form>    

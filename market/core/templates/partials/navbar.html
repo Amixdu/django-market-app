@@ -1,17 +1,60 @@
 <nav class="bg-gray-800 p-4">
   <div class="container mx-auto flex justify-between items-center">
-      <a href="#" class="text-white text-lg font-bold">Market</a>
+    <!-- Brand/logo -->
+    <a href="#" class="text-white text-lg font-bold">Market</a>
 
-      <div class="space-x-4">
-          <a href="{% url "core:index" %}" class="text-white hover:text-gray-300">Home</a>
-          <a href="{% url "item:create" %}" class="text-white hover:text-gray-300">Add Item</a>
-          <a href="#" class="text-white hover:text-gray-300">Browse</a>
-          {% comment %} <a href="{% url "core:logout" %}" class="text-white hover:text-gray-300">Log out</a> {% endcomment %}
-          <form method="post" action="{% url 'core:logout' %}" class="inline-block">
-            {% csrf_token %}
-            <button type="submit" class="text-white hover:text-gray-300">Logout</button>
-        </form>
-      </div>
+    <!-- Navigation links -->
+    <div id="navLinks" class="hidden lg:flex space-x-4">
+      <a href="{% url "core:index" %}" class="text-white hover:text-gray-300">Home</a>
+      <a href="{% url "dashboard:index" %}" class="text-white hover:text-gray-300">Dashboard</a>
+      <a href="{% url "item:create" %}" class="text-white hover:text-gray-300">Add Item</a>
+      <a href="{% url "item:items" %}" class="text-white hover:text-gray-300">Browse</a>
+      <form method="post" action="{% url 'core:logout' %}" class="inline-block">
+        {% csrf_token %}
+        <button type="submit" class="text-white hover:text-gray-300">Logout</button>
+      </form>
+    </div>
+
+    <!-- Toggle button for mobile menu -->
+    <button id="mobileMenuButton" class="lg:hidden text-white focus:outline-none">
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Navigation links for mobile -->
+  <div id="mobileNav" class="lg:hidden fixed inset-0 bg-gray-800 bg-opacity-75 z-50 hidden">
+    <div class="flex justify-end p-4">
+      <button id="mobileMenuClose" class="text-white">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-col items-center">
+      <a href="{% url "core:index" %}" class="text-white hover:text-gray-300 py-2">Home</a>
+      <a href="{% url "dashboard:index" %}" class="text-white hover:text-gray-300 py-2">Dashboard</a>
+      <a href="{% url "item:create" %}" class="text-white hover:text-gray-300 py-2">Add Item</a>
+      <a href="{% url "item:items" %}" class="text-white hover:text-gray-300 py-2">Browse</a>
+      <form method="post" action="{% url 'core:logout' %}" class="inline-block py-2">
+        {% csrf_token %}
+        <button type="submit" class="text-white hover:text-gray-300">Logout</button>
+      </form>
+    </div>
   </div>
 </nav>
 
+<script>
+  const mobileMenuButton = document.getElementById('mobileMenuButton');
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
+  const mobileNav = document.getElementById('mobileNav');
+
+  mobileMenuButton.addEventListener('click', function () {
+    mobileNav.classList.toggle('hidden');
+  });
+
+  mobileMenuClose.addEventListener('click', function () {
+    mobileNav.classList.add('hidden');
+  });
+</script>

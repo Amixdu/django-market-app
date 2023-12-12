@@ -1,0 +1,25 @@
+{% extends 'core/layout.html' %}
+
+{% block content %}
+  <h1 class="text-3xl font-bold mb-8 text-center">My Items</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    {% for item in items %}
+      <div class="mb-8">
+        <a href="{% url 'item:item' item.id %}" class="block group">
+          <div class="bg-white p-6 rounded-xl h-96 flex flex-col items-center justify-between transition duration-300 transform hover:scale-105 group-hover:shadow-lg">
+            {% if item.image %}
+              <img src="{{ item.image.url }}" class="rounded-t-xl h-48 w-full object-cover mb-4" alt="{{ item.name }}">
+            {% else %}
+              <div class="rounded-t-xl h-48 w-full bg-gray-200 mb-4"></div>
+            {% endif %}
+            <div class="text-center">
+              <h2 class="text-lg font-semibold mb-2 group-hover:text-indigo-600">{{ item.name }}</h2>
+              <p class="text-gray-700">Price: ${{ item.price }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
