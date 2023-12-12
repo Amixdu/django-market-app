@@ -1,0 +1,12 @@
+{% extends 'core/dashboard.html' %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+    <div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl" >
+      <h2 class="text-center text-2xl">Newest items</h2>
+      {% include 'partials/new_items.html' %}
+      <h2 class="text-center text-2xl py-6">Categories</h2>
+      {% include 'partials/categories.html' %}
+    </div>
+  {% endif %}
+{% endblock %}

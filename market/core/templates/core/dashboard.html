@@ -1,0 +1,10 @@
+{% extends "core/base.html" %}
+
+{% block main %}
+  {% include 'partials/navbar.html' %}
+    <div class="px-6 py-6">
+      {% block content %}
+      {% endblock %}
+    </div>
+  {% include 'partials/footer.html' %}
+{% endblock main %}

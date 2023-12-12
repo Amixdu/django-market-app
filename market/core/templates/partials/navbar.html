@@ -1,0 +1,17 @@
+<nav class="bg-gray-800 p-4">
+  <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="text-white text-lg font-bold">Market</a>
+
+      <div class="space-x-4">
+          <a href="{% url "core:index" %}" class="text-white hover:text-gray-300">Home</a>
+          <a href="{% url "item:create" %}" class="text-white hover:text-gray-300">Add Item</a>
+          <a href="#" class="text-white hover:text-gray-300">Browse</a>
+          {% comment %} <a href="{% url "core:logout" %}" class="text-white hover:text-gray-300">Log out</a> {% endcomment %}
+          <form method="post" action="{% url 'core:logout' %}" class="inline-block">
+            {% csrf_token %}
+            <button type="submit" class="text-white hover:text-gray-300">Logout</button>
+        </form>
+      </div>
+  </div>
+</nav>
+

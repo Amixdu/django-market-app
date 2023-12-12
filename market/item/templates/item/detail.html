@@ -1,0 +1,71 @@
+{% extends 'core/dashboard.html' %}
+
+{% block content %}
+<div class="mx-auto bg-gray-100 p-6 rounded-md shadow-md grid sm:grid-cols-1 lg:grid-cols-5 gap-6">
+
+  <!-- Product Image -->
+  <div class="lg:col-span-3">
+    {% if item.image %}
+      <img src="{{ item.image.url }}" alt="Product Image" class="w-full mb-4 lg:mb-0 rounded-md">
+    {% else %}
+        <!-- Provide a default image or alternative content -->
+        <div class="rounded-t-xl h-48 w-full bg-gray-200 mb-2"></div>
+    {% endif %}
+  </div>
+
+  <!-- Product Details -->
+  <div class="lg:col-span-2 flex flex-col">
+
+      <!-- Product Name -->
+      <h2 class="text-2xl font-semibold text-gray-800 mb-2">{{ item.name }}</h2>
+      
+      <!-- Product Description -->
+      {% if item.description %}
+        <p class="text-gray-600">{{ item.description }} </p>
+      {% endif %}
+
+      <!-- Product Price -->
+      <div class="mt-4">
+          <span class="text-xl font-semibold text-indigo-600">${{ item.price }}</span>
+      </div>
+
+      <!-- Seller -->
+      <div class="mt-4">
+        <span class="text-gray-600">Sold by: {{ item.created_by.username }}</span>
+      </div>
+
+      <!-- Contact Seller Button -->
+      <div class="mt-4">
+        <a href="mailto:seller@example.com" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-300">Contact Seller</a>
+      </div>
+
+      <!-- Flex grow div to take up the space -->
+      <div class="flex-grow"></div>
+
+      <!-- Related Items Section -->
+      <div class="grid lg:grid-cols-5 mt-4">
+        <div class="lg:col-span-5 mt-4">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">Other items by {{ item.created_by.username }}</h3>
+
+          <!-- Small Cards for Related Items -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {% for related_item in related_items %}
+              <a href="{% url 'item:detail' related_item.id %}"> 
+                <div class="bg-white p-4 rounded-md shadow-md">
+                  <img src="{{ related_item.image.url }}" alt="Related Product Image" class="w-full mb-2 rounded-md">
+                  <h4 class="text-base font-semibold text-gray-800 mb-2">{{ related_item.name }}</h4>
+                  <span class="text-sm text-indigo-600">${{ related_item.price }}</span>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+      </div>
+  </div>
+
+  </div>
+
+  
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Visual Studio Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Virtual environment
+venv/
+env/
+env_bak/
+
+# Pipenv
+Pipfile
+Pipfile.lock
+
+# macOS
+.DS_Store
+
+# Thumbnails
+__thumbnails/
+
+# .env file
+.env
+
+# Ignore local settings
+settings_local.py
+
+# Ignore migrations
+/migrations/
+
+# Ignore test database
+*.test.db
