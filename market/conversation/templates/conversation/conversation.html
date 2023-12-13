@@ -1,0 +1,52 @@
+{% extends "core/layout.html" %}
+
+{% block content %}
+<div class="bg-gray-100">
+
+  <div class="w-full h-full bg-white shadow-lg rounded-lg overflow-hidden">
+
+      <!-- Chat Header -->
+      <div class="bg-blue-500 p-4 text-white">
+          <span class="text-lg font-bold">{{ receivers|join:", " }}</span>
+      </div>
+
+      <!-- Chat Messages -->
+      <div class="overflow-y-auto h-96 p-4">
+        <!-- Others -->
+        {% for message in conversation.messages.all %}
+          {% if message.created_by.id == request.user.id %}
+            <!-- Sender -->
+            <div class="flex"> 
+              <div class="ml-auto text-sm text-gray-500 mb-1">You</div>
+            </div>
+            
+            <div class="flex mb-4">
+                <div class="ml-auto bg-gray-200 p-2 rounded-lg">
+                    <p class="text-sm">{{ message.content }}</p>
+                </div>
+            </div>
+          {% else %}
+            <div class="text-sm text-gray-500 mb-1">{{ message.created_by.username }}</div>
+            <div class="flex mb-4">
+                <div class="bg-blue-400 p-2 rounded-lg text-white">
+                    <p class="text-sm">{{ message.content }}</p>
+                </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        
+      </div>
+
+      <!-- Chat Input -->
+      <form method="POST" action="{% url "conversation:conversation" conversation.id %}" class="flex items-center p-4">
+          {% csrf_token %}
+          {{ form.content }}
+          <button type="submit" class="bg-blue-500 text-white p-2 rounded-lg ml-2 hover:bg-blue-600 focus:outline-none">
+              Send
+          </button>
+      </form>
+
+  </div>
+</div>
+
+{% endblock content %}

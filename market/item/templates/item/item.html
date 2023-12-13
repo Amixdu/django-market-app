@@ -48,7 +48,7 @@
 
         <!-- Contact Seller Button -->
         <div class="mt-4">
-          <a href="mailto:seller@example.com" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-300">Contact Seller</a>
+          <a href="{% url "conversation:create" item.id %}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-300">Contact Seller</a>
         </div>
       {% endif %}
 
