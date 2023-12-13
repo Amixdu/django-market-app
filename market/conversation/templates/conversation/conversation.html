@@ -7,7 +7,7 @@
 
       <!-- Chat Header -->
       <div class="bg-blue-500 p-4 text-white">
-          <span class="text-lg font-bold">{{ receivers|join:", " }}</span>
+          <span class="text-lg font-bold">Item: {{ conversation.item.name }} | Chat members: {{ request.user.username }}, {{ receivers|join:", " }}</span>
       </div>
 
       <!-- Chat Messages -->
